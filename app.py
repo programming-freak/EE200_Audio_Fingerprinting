@@ -176,9 +176,11 @@ if mode == "Single Clip":
             st.subheader("-> Spectrogram")
 
             fig = create_spectrogram(temp_path)
-            st.write("Figure created")
-            st.pyplot(fig)
-            st.write("Figure rendered")
+            try:
+                st.pyplot(fig)
+                st.write("Rendered")
+            except Exception as e:
+                st.exception(e)
 
         with col2:
 

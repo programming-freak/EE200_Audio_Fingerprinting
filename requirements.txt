@@ -5,3 +5,7 @@ matplotlib
 scipy
 soundfile
 setuptools
+pydub
+audioread
+numba
+librosa

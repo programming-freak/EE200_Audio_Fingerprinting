@@ -249,19 +249,18 @@ def create_spectrogram(audio_path):
 
     f, t, Sxx = compute_spectrogram(audio, fs)
 
-    peaks = extract_peaks(Sxx)
+    fig, ax = plt.subplots(figsize=(8,4))
 
-    fig, ax = plt.subplots()
-
-    ax.scatter(
-        peaks[:,1],
-        peaks[:,0],
-        s=5
+    ax.imshow(
+        10*np.log10(Sxx + 1e-12),
+        aspect='auto',
+        origin='lower',
+        extent=[t.min(), t.max(), f.min(), f.max()]
     )
 
-    ax.set_title("Peaks")
-    ax.set_xlabel("Time Index")
-    ax.set_ylabel("Frequency Index")
+    ax.set_title("Spectrogram")
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Frequency (Hz)")
 
     return fig
 # =====================================================

@@ -249,6 +249,8 @@ def create_spectrogram(audio_path):
         audio,
         fs
     )
+    st.write("SXX")
+    st.write(Sxx.shape)
     peaks = extract_peaks(
         Sxx
     )

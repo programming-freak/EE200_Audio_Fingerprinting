@@ -244,14 +244,11 @@ def batch_predict(folder):
 # =====================================================
 
 def create_spectrogram(audio_path):
-    st.write("1")
     audio, fs = load_audio(audio_path)
-    st.write("Audio loaded", len(audio), fs)
     f, t, Sxx = compute_spectrogram(
         audio,
         fs
     )
-    st.write("Spectrogram shape:", Sxx.shape)
     peaks = extract_peaks(
         Sxx
     )

@@ -252,7 +252,6 @@ def create_spectrogram(audio_path):
     peaks = extract_peaks(
         Sxx
     )
-    st.write("Peaks:", len(peaks))
     # Optional: limit peaks for cleaner visualization
     if len(peaks) > 1000:
         peaks = peaks[:1000]
@@ -261,9 +260,9 @@ def create_spectrogram(audio_path):
         figsize=(8,4),
         facecolor="#050816"
     )
-
+    st.write("1")
     ax.set_facecolor("#050816")
-
+    st.write("2")
     # Spectrogram
     ax.pcolormesh(
         t,
@@ -272,7 +271,7 @@ def create_spectrogram(audio_path):
         shading="gouraud",
         cmap="magma"
     )
-
+    st.write("3")
     # Peak markers
     ax.scatter(
         t[peaks[:,1]],
@@ -284,30 +283,30 @@ def create_spectrogram(audio_path):
         alpha=1.0,
         zorder=100
     )
-
+    st.write("4")
     ax.set_title(
         f"Spectrogram with {len(peaks)} Peaks",
         color="#00FFFF",
         fontsize=14
     )
-
+    st.write("5")
     ax.set_xlabel(
         "Time (s)",
         color="#00FFFF"
     )
-
+    st.write("6")
     ax.set_ylabel(
         "Frequency (Hz)",
         color="#00FFFF"
     )
-
+    st.write("7")
     ax.tick_params(
         colors="#00FFFF"
     )
-
+    st.write("8")
     for spine in ax.spines.values():
         spine.set_color("#00FFFF")
-
+    st.write("9")
     return fig
 
 # =====================================================

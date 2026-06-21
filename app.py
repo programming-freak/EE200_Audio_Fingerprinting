@@ -175,11 +175,10 @@ if mode == "Single Clip":
 
             st.subheader("-> Spectrogram")
 
-            st.pyplot(
-                create_spectrogram(
-                    temp_path
-                )
-            )
+            fig = create_spectrogram(temp_path)
+            st.write("Figure created")
+            st.pyplot(fig)
+            st.write("Figure rendered")
 
         with col2:
 

@@ -13,9 +13,9 @@ from collections import defaultdict
 # LOAD DATABASE
 # =====================================================
 
-with open("database.pkl", "rb") as f:
-    database = pickle.load(f)
-
+# with open("database.pkl", "rb") as f:
+#     database = pickle.load(f)
+database={}
 # =====================================================
 # AUDIO LOADING
 # =====================================================

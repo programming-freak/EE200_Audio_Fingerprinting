@@ -1,6 +1,7 @@
 import os
 import pickle
-import librosa
+from scipy.io import wavfile
+from pydub import AudioSegment
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -20,15 +21,22 @@ with open("database.pkl", "rb") as f:
 # AUDIO LOADING
 # =====================================================
 
+from pydub import AudioSegment
+import numpy as np
+
 def load_audio(path):
 
-    audio, fs = librosa.load(
-        path,
-        sr=22050,
-        mono=True
-    )
+    audio = AudioSegment.from_file(path)
 
-    return audio, fs
+    samples = np.array(
+        audio.get_array_of_samples()
+    ).astype(np.float32)
+
+    samples /= np.max(np.abs(samples))
+
+    fs = audio.frame_rate
+
+    return samples, fs
 
 # =====================================================
 # SPECTROGRAM

@@ -1,27 +1,22 @@
 import tempfile
 import pandas as pd
 import streamlit as st
+from matcher import (
+    identify_song,
+    create_spectrogram,
+    create_constellation,
+    create_offset_histogram
+)
+# =====================================================
+# PAGE CONFIG
+# =====================================================
 st.set_page_config(
     page_title="Audio Fingerprinting System",
     layout="wide"
 )
-st.write("Checkpoint 1")
-import matcher
-    # identify_song,
-    # create_spectrogram,
-    # create_constellation,
-    # create_offset_histogram
-st.write("Checkpoint 2")
-# =====================================================
-# PAGE CONFIG
-# =====================================================
-
-
-st.write("Checkpoint 3")
 # =====================================================
 # CUSTOM CSS
 # =====================================================
-
 st.markdown("""
 <style>
 
@@ -45,8 +40,6 @@ div[data-testid="stMetric"]{
 
 </style>
 """, unsafe_allow_html=True)
-
-st.write("Checkpoint 4")
 # =====================================================
 # HEADER
 # =====================================================
@@ -70,7 +63,6 @@ Shazam-Inspired Song Recognition using Audio Fingerprints
 </p>
 """, unsafe_allow_html=True)
 
-st.write("Checkpoint 5")
 # =====================================================
 # SIDEBAR
 # =====================================================
@@ -89,7 +81,6 @@ mode = st.sidebar.radio(
     ]
 )
 
-st.write("Checkpoint 6")
 # =====================================================
 # SINGLE CLIP MODE
 # =====================================================

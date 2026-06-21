@@ -1,7 +1,7 @@
 import os
 import pickle
 from scipy.io import wavfile
-from pydub import AudioSegment
+import soundfile as sf
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -26,17 +26,19 @@ import numpy as np
 
 def load_audio(path):
 
-    audio = AudioSegment.from_file(path)
+    audio, fs = sf.read(path)
 
-    samples = np.array(
-        audio.get_array_of_samples()
-    ).astype(np.float32)
+    if len(audio.shape) > 1:
+        audio = np.mean(
+            audio,
+            axis=1
+        )
 
-    samples /= np.max(np.abs(samples))
+    audio = audio.astype(
+        np.float32
+    )
 
-    fs = audio.frame_rate
-
-    return samples, fs
+    return audio, fs
 
 # =====================================================
 # SPECTROGRAM

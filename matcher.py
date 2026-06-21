@@ -244,73 +244,26 @@ def batch_predict(folder):
 # =====================================================
 
 def create_spectrogram(audio_path):
+
     audio, fs = load_audio(audio_path)
-    f, t, Sxx = compute_spectrogram(
-        audio,
-        fs
-    )
-    st.write("SXX")
-    st.write(Sxx.shape)
-    peaks = extract_peaks(
-        Sxx
-    )
-    # Optional: limit peaks for cleaner visualization
-    if len(peaks) > 1000:
-        peaks = peaks[:1000]
 
-    fig, ax = plt.subplots(
-        figsize=(8,4),
-        facecolor="#050816"
-    )
-    st.write("1")
-    ax.set_facecolor("#050816")
-    st.write("2")
-    # Spectrogram
-    ax.pcolormesh(
-        t,
-        f,
-        10*np.log10(Sxx + 1e-12),
-        shading="gouraud",
-        cmap="magma"
-    )
-    st.write("3")
-    # Peak markers
+    f, t, Sxx = compute_spectrogram(audio, fs)
+
+    peaks = extract_peaks(Sxx)
+
+    fig, ax = plt.subplots()
+
     ax.scatter(
-        t[peaks[:,1]],
-        f[peaks[:,0]],
-        s=25,
-        c="#00FFFF",
-        edgecolors="white",
-        linewidths=0.5,
-        alpha=1.0,
-        zorder=100
+        peaks[:,1],
+        peaks[:,0],
+        s=5
     )
-    st.write("4")
-    ax.set_title(
-        f"Spectrogram with {len(peaks)} Peaks",
-        color="#00FFFF",
-        fontsize=14
-    )
-    st.write("5")
-    ax.set_xlabel(
-        "Time (s)",
-        color="#00FFFF"
-    )
-    st.write("6")
-    ax.set_ylabel(
-        "Frequency (Hz)",
-        color="#00FFFF"
-    )
-    st.write("7")
-    ax.tick_params(
-        colors="#00FFFF"
-    )
-    st.write("8")
-    for spine in ax.spines.values():
-        spine.set_color("#00FFFF")
-    st.write("9")
-    return fig
 
+    ax.set_title("Peaks")
+    ax.set_xlabel("Time Index")
+    ax.set_ylabel("Frequency Index")
+
+    return fig
 # =====================================================
 # CONSTELLATION MAP
 # =====================================================

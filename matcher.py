@@ -1,7 +1,6 @@
 import os
 import pickle
-from scipy.io import wavfile
-import soundfile as sf
+import librosa
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -21,21 +20,12 @@ with open("database.pkl", "rb") as f:
 # AUDIO LOADING
 # =====================================================
 
-from pydub import AudioSegment
-import numpy as np
-
 def load_audio(path):
 
-    audio, fs = sf.read(path)
-
-    if len(audio.shape) > 1:
-        audio = np.mean(
-            audio,
-            axis=1
-        )
-
-    audio = audio.astype(
-        np.float32
+    audio, fs = librosa.load(
+        path,
+        sr=22050,
+        mono=True
     )
 
     return audio, fs

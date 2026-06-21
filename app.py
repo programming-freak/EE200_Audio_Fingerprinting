@@ -6,12 +6,11 @@ st.set_page_config(
     layout="wide"
 )
 st.write("Checkpoint 1")
-from matcher import (
+import matcher
     # identify_song,
     # create_spectrogram,
     # create_constellation,
     # create_offset_histogram
-)
 st.write("Checkpoint 2")
 # =====================================================
 # PAGE CONFIG

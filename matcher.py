@@ -9,17 +9,13 @@ from scipy.signal import spectrogram
 from scipy.ndimage import maximum_filter
 from collections import defaultdict
 
-# =====================================================
-# LOAD DATABASE
-# =====================================================
+# Loading the  DATABASE
 
 with open("database.pkl", "rb") as f:
     database = pickle.load(f)
 # database={}
-# =====================================================
-# AUDIO LOADING
-# =====================================================
 
+# AUDIO LOADING
 def load_audio(path):
 
     audio, fs = librosa.load(
@@ -30,9 +26,7 @@ def load_audio(path):
 
     return audio, fs
 
-# =====================================================
 # SPECTROGRAM
-# =====================================================
 
 def compute_spectrogram(audio, fs):
 
@@ -45,9 +39,7 @@ def compute_spectrogram(audio, fs):
 
     return f, t, Sxx
 
-# =====================================================
 # PEAK EXTRACTION
-# =====================================================
 
 def extract_peaks(
     Sxx,
@@ -74,9 +66,7 @@ def extract_peaks(
 
     return peaks
 
-# =====================================================
 # HASH GENERATION
-# =====================================================
 
 def generate_hashes(
     peaks,
@@ -111,9 +101,7 @@ def generate_hashes(
 
     return hashes
 
-# =====================================================
 # QUERY HASHES
-# =====================================================
 
 def get_hashes(audio_path):
 
@@ -136,9 +124,7 @@ def get_hashes(audio_path):
 
     return hashes
 
-# =====================================================
 # MATCHING
-# =====================================================
 
 def match_song(query_hashes):
 
@@ -163,9 +149,7 @@ def match_song(query_hashes):
 
     return votes
 
-# =====================================================
 # IDENTIFICATION
-# =====================================================
 
 def identify_song(audio_path):
 
@@ -200,9 +184,7 @@ def identify_song(audio_path):
         confidence
     )
 
-# =====================================================
 # BATCH PREDICTION
-# =====================================================
 
 def batch_predict(folder):
 
@@ -239,9 +221,7 @@ def batch_predict(folder):
         ]
     )
 
-# =====================================================
 # SPECTROGRAM
-# =====================================================
 
 def create_spectrogram(audio_path):
 
@@ -263,9 +243,8 @@ def create_spectrogram(audio_path):
     ax.set_ylabel("Frequency (Hz)")
 
     return fig
-# =====================================================
+
 # CONSTELLATION MAP
-# =====================================================
 
 def create_constellation(audio_path):
 
@@ -319,9 +298,7 @@ def create_constellation(audio_path):
     return fig
 
 
-# =====================================================
 # OFFSET HISTOGRAM
-# =====================================================
 
 def create_offset_histogram(audio_path):
 

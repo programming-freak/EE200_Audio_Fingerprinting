@@ -7,16 +7,14 @@ from matcher import (
     create_constellation,
     create_offset_histogram
 )
-# =====================================================
+
 # PAGE CONFIG
-# =====================================================
 st.set_page_config(
     page_title="Audio Fingerprinting System",
     layout="wide"
 )
-# =====================================================
-# CUSTOM CSS
-# =====================================================
+
+# Writing the CSS Part
 st.markdown("""
 <style>
 
@@ -40,10 +38,7 @@ div[data-testid="stMetric"]{
 
 </style>
 """, unsafe_allow_html=True)
-# =====================================================
-# HEADER
-# =====================================================
-
+# Writing the HEADER
 st.markdown("""
 <h1 style="
 text-align:center;
@@ -63,9 +58,7 @@ Shazam-Inspired Song Recognition using Audio Fingerprints
 </p>
 """, unsafe_allow_html=True)
 
-# =====================================================
 # SIDEBAR
-# =====================================================
 
 st.sidebar.markdown("""
 # 🎵 Music ID
@@ -80,10 +73,7 @@ mode = st.sidebar.radio(
         "Batch Mode"
     ]
 )
-
-# =====================================================
 # SINGLE CLIP MODE
-# =====================================================
 
 if mode == "Single Clip":
 
@@ -115,9 +105,7 @@ if mode == "Single Clip":
                 temp_path
             )
 
-        # ==========================================
         # PREDICTION CARD
-        # ==========================================
 
         st.markdown(f"""
         <div style="
@@ -147,9 +135,7 @@ if mode == "Single Clip":
         </div>
         """, unsafe_allow_html=True)
 
-        # ==========================================
         # STATS
-        # ==========================================
 
         c1, c2 = st.columns(2)
 
@@ -165,9 +151,7 @@ if mode == "Single Clip":
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        # ==========================================
         # SPECTROGRAM + CONSTELLATION
-        # ==========================================
 
         col1, col2 = st.columns(2)
 
@@ -192,9 +176,7 @@ if mode == "Single Clip":
                 )
             )
 
-        # ==========================================
         # OFFSET HISTOGRAM
-        # ==========================================
 
         st.subheader(
             "-> Offset Histogram"
@@ -206,9 +188,8 @@ if mode == "Single Clip":
             )
         )
 
-# =====================================================
-# BATCH MODE
-# =====================================================
+
+# Writing the code for BATCH MODE
 
 if mode == "Batch Mode":
 
@@ -235,9 +216,7 @@ if mode == "Batch Mode":
             f"{len(uploaded_files)} file(s) selected"
         )
 
-        # ==========================================
         # RUN BATCH BUTTON
-        # ==========================================
 
         run_batch = st.button(
             "-> Run Batch",
